@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBerendezesekTable extends Migration
+class CreateSzenzorokTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateBerendezesekTable extends Migration
      */
     public function up()
     {
-        Schema::create('berendezesek', function (Blueprint $table) {
+        Schema::create('szenzorok', function (Blueprint $table) {
             $table->id();
             $table->string('nev');
-            $table->unsignedBigInteger('uzem_id');
-            $table->index('uzem_id');
-            
-            $table->foreign('uzem_id')->references('id')->on('uzemek')->onDelete('cascade');
+            $table->unsignedBigInteger('berendezes_id');
+
+            $table->foreign('berendezes_id')->references('id')->on('berendezesek')->onDelete('cascade');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateBerendezesekTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berendezesek');
+        Schema::dropIfExists('szenzorok');
     }
 }
