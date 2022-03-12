@@ -18,8 +18,7 @@ class CreateBerendezesekTable extends Migration
             $table->string('nev');
             $table->unsignedBigInteger('uzem_id');
             $table->index('uzem_id');
-            $table->foreign('uzem_id')->references('id')->on('Uzemek')->onDelete('cascade');
-            
+            $table->foreign('uzem_id')->references('id')->on('uzemek')->onDelete('cascade');
         });
     }
 
