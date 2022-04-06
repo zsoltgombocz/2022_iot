@@ -13,14 +13,14 @@ class CreateMertErtekekTable extends Migration
      */
     public function up()
     {
-        Schema::create('mertErtekek', function (Blueprint $table) {
+        Schema::create('measured_values', function (Blueprint $table) {
             $table->id();
             $table->float('mert_ertek');
-            $table->timestamp('datum');
+            $table->timestamps();
             $table->float('kulonbseg')->nullable();
             $table->unsignedBigInteger('szenzor_id');
 
-            $table->foreign('szenzor_id')->references('id')->on('szenzorok')->onDelete('cascade');
+            $table->foreign('szenzor_id')->references('id')->on('sensors')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateMertErtekekTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mertErtekek');
+        Schema::dropIfExists('measured_values');
     }
 }

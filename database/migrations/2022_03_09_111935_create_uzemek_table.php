@@ -13,7 +13,7 @@ class CreateUzemekTable extends Migration
      */
     public function up()
     {
-        Schema::create('uzemek', function (Blueprint $table) {
+        Schema::create('plants', function (Blueprint $table) {
             $table->id();
             $table->string('nev');
         });
@@ -26,6 +26,6 @@ class CreateUzemekTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uzemek');
+        Schema::dropIfExists('plants');
     }
 }

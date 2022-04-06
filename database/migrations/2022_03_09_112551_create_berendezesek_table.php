@@ -13,13 +13,13 @@ class CreateBerendezesekTable extends Migration
      */
     public function up()
     {
-        Schema::create('berendezesek', function (Blueprint $table) {
+        Schema::create('installments', function (Blueprint $table) {
             $table->id();
             $table->string('nev');
             $table->unsignedBigInteger('uzem_id');
             $table->index('uzem_id');
             
-            $table->foreign('uzem_id')->references('id')->on('uzemek')->onDelete('cascade');
+            $table->foreign('uzem_id')->references('id')->on('plants')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateBerendezesekTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berendezesek');
+        Schema::dropIfExists('installments');
     }
 }

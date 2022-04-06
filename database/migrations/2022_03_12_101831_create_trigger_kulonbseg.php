@@ -14,7 +14,7 @@ class CreateTriggerKulonbseg extends Migration
     public function up()
     {
         DB::unprepared('
-        CREATE TRIGGER kulonbseg BEFORE INSERT ON MertErtekek 
+        CREATE TRIGGER kulonbseg BEFORE INSERT ON measured_values
 
         FOR EACH ROW 
 
@@ -22,7 +22,7 @@ class CreateTriggerKulonbseg extends Migration
 
             DECLARE elozo FLOAT DEFAULT NULL; 
 
-            SET elozo = (SELECT mert_ertek from MertErtekek WHERE szenzor_id = new.szenzor_id ORDER BY datum DESC LIMIT 1); 
+            SET elozo = (SELECT mert_ertek from measured_values WHERE szenzor_id = new.szenzor_id ORDER BY created_at DESC LIMIT 1); 
 
             IF elozo IS NOT NULL THEN 
 
