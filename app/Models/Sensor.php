@@ -10,12 +10,14 @@ use App\Models\Installment;
 class Sensor extends Model
 {
     protected $fillable = ['berendezes_id', 'nev'];
-    public $timestamps = false; 
-    public function measuredvalues() {
+    public $timestamps = false;
+    public function measuredvalues()
+    {
         return $this->belongsTo(MeasuredValue::class);
     }
 
-    public function installment() {
+    public function installment()
+    {
         return $this->hasOne(Installment::class);
     }
     use HasFactory;
