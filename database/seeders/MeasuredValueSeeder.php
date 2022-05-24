@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\MeasuredValue;
+use Carbon\Carbon;
 
 class MeasuredValueSeeder extends Seeder
 {
@@ -14,8 +15,14 @@ class MeasuredValueSeeder extends Seeder
      */
     public function run()
     {
-        MeasuredValue::factory()->count(3)->create(['szenzor_id'=>1]);
-        MeasuredValue::factory()->count(3)->create(['szenzor_id'=>3]);
-        
+        $datetime = Carbon::create('2022', '4', '1', '0', '0', '0');
+        while ($datetime <= Carbon::now()) {
+
+            MeasuredValue::factory()->count(1)->create(['szenzor_id' => 1, 'created_at' => $datetime]);
+            MeasuredValue::factory()->count(1)->create(['szenzor_id' => 2, 'created_at' => $datetime]);
+            MeasuredValue::factory()->count(1)->create(['szenzor_id' => 3, 'created_at' => $datetime]);
+
+            $datetime->addMinute('10');
+        }
     }
 }
